@@ -16,7 +16,7 @@ const iniciarOuPausarBt = document.querySelector('#start-pause span');
 const iniciarOuPausarIcone = document.querySelector('.app__card-primary-butto-icon');
 const tempoNaTela = document.querySelector('#timer');
 
-let tempoDecorridoEmSegundos = 5; //let, pq está alterando o valor dinâmicamente.
+let tempoDecorridoEmSegundos = 1500; //let, pq está alterando o valor dinâmicamente.
 let intervaloId = null;
 
 musica.loop = true; 
@@ -31,7 +31,7 @@ musicaFocoInput.addEventListener('change', () => {
 });
 
 focoButton.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 5; //25 minutos em segundos.
+    tempoDecorridoEmSegundos = 1500; //25 minutos em segundos.
     alternarContexto('foco');
     focoButton.classList.add('active');
 });
