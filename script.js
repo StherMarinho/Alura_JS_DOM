@@ -1,4 +1,4 @@
-//DOM = Document Object Model, é uma árvore de nós junçãoo de vários elementos HTML, CSS , JS, API's, juntando tudo e fazendo uma representação estruturada nonavegador.
+//DOM = Document Object Model, é uma árvore de nós junção de vários elementos HTML, CSS , JS, API's, juntando tudo e fazendo uma representação estruturada no navegador.
 const html = document.querySelector('html');
 const focoButton = document.querySelector('.app__card-button--foco');
 const curtoButton = document.querySelector('.app__card-button--curto');
@@ -16,7 +16,7 @@ const iniciarOuPausarBt = document.querySelector('#start-pause span');
 const iniciarOuPausarIcone = document.querySelector('.app__card-primary-butto-icon');
 const tempoNaTela = document.querySelector('#timer');
 
-let tempoDecorridoEmSegundos = 1500; //let, pq está alterando o valor dinâmicamente.
+let tempoDecorridoEmSegundos = 5; //let, pq está alterando o valor dinâmicamente.
 let intervaloId = null;
 
 musica.loop = true; 
@@ -30,10 +30,8 @@ musicaFocoInput.addEventListener('change', () => {
     }
 });
 
-
-
 focoButton.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 1500; //25 minutos em segundos.
+    tempoDecorridoEmSegundos = 5; //25 minutos em segundos.
     alternarContexto('foco');
     focoButton.classList.add('active');
 });
@@ -85,6 +83,11 @@ const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0){
         musicaTempoFinal.play();
         alert('O tempo acabou!');
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco' //broadcast de evento
+        if(focoAtivo){
+            const evento = new CustomEvent('FocoFinalizado')
+            document.dispatchEvent(evento) //despachar o evento
+        }
         zerar(); //torna o temporizador nulo, parando a contagem.
         return;
     }
